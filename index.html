@@ -27,6 +27,7 @@
     html, body {
       margin: 0;
       min-height: 100%;
+      width: 100%;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
@@ -37,17 +38,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(16px, 3vw, 32px);
       overflow-x: hidden;
+      background: var(--bg);
     }
 
     .page {
-      width: min(1200px, 100%);
+      width: 100vw;
+      min-height: 100vh;
       padding: clamp(18px, 3vw, 40px);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(13,17,23,0.96), rgba(22,27,34,0.94));
-      box-shadow: 0 20px 50px var(--shadow);
+      background: linear-gradient(180deg, rgba(13,17,23,0.98), rgba(22,27,34,0.96));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
     }
 
     .header {
@@ -76,8 +81,8 @@
     .button-wrapper {
       position: relative;
       flex: 1;
-      min-width: 200px;
-      max-width: 320px;
+      min-width: 220px;
+      max-width: 340px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -156,6 +161,8 @@
       opacity: 0;
       transition: max-height 0.45s ease, opacity 0.3s ease, margin-top 0.3s ease;
       margin-top: 0;
+      width: min(1100px, calc(100vw - 32px));
+      margin-inline: auto;
     }
 
     .info-panel.open {
@@ -210,7 +217,7 @@
 
     @media (max-width: 760px) {
       .page {
-        border-radius: 14px;
+        padding: 18px 14px;
       }
 
       .panel-inner {
@@ -300,7 +307,6 @@
       const mastermindBtn = wrapper.querySelector('.mastermind-btn');
       const arrowBtn = wrapper.querySelector('.arrow-btn');
 
-      // Click on main button or arrow to toggle panel
       const togglePanel = () => {
         const isOpen = panel.classList.toggle('open');
         arrowBtn.classList.toggle('open', isOpen);
@@ -316,7 +322,6 @@
       mastermindBtn.addEventListener('click', togglePanel);
       arrowBtn.addEventListener('click', togglePanel);
 
-      // Show arrow on hover
       wrapper.addEventListener('mouseenter', () => {
         arrowBtn.classList.add('visible');
       });
